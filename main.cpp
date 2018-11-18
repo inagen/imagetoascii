@@ -20,18 +20,6 @@ std::vector<double> getAverageBrightness(Magick::Image& image, int& columns, int
 	return brightnessMap;
 }
 
-std::vector<char> rotateCharMap (std::vector<char> charMap, int columns, int rows){
-	std::cout << "ROTATION" << std::endl;
-	std::vector<char> newCharMap;
-	newCharMap.resize(columns*rows);
-	for(int i(0); i < columns; i++){
-		for(int j(0); j < rows; j++){
-			newCharMap[j*columns + i] = charMap[i*rows + j];
-		}
-	}
-	return newCharMap;
-}
-
 std::vector<char> getCharMap(std::vector<double> brightnessMap, int columns, int rows){
 	std::vector<char> charMap;
 	charMap.resize(columns*rows);
@@ -56,7 +44,6 @@ std::vector<char> getCharMap(std::vector<double> brightnessMap, int columns, int
 void printArt(std::vector<char> charMap, int columns, int rows, std::string filename){
 	std::ofstream fout;
 	fout.open(std::string(filename+".txt"));
-	//charMap = rotateCharMap(charMap, columns, rows);
 	for(int j(0); j < columns; j++){
 		for(int i(0); i < rows; i++){
 			fout << charMap[i*columns + j];
